@@ -4,6 +4,6 @@ from colorama import init, Fore
 init()
 
 while True:
-    print(Fore.MAGENTA + 'Starting bot with infinite execution!' + Fore.RESET)
-    p = Popen("python .\index.py", shell=True)
-    p.wait() 
+    print(Fore.MAGENTA + 'Iniciando o bot em loop infinito!' + Fore.RESET)
+    p = Popen("cd - && cd - && python3 index.py", shell=True)
+    p.wait()

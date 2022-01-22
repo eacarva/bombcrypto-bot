@@ -42,36 +42,36 @@ class Heroes:
 
         mode = self.config['heroes']['mode']
         if mode in ["all", 'workall', 'full', 'green']:
-          self.log.console('Search for heroes to work', emoji='🏢', color='green')
+          self.log.console('Procurando heróis para o trabalho', emoji='🏢', color='green')
 
         self.goToHeroes()
 
         if heroesMode is not None:
-            mode = heroesMode
+          mode = heroesMode
 
         if mode == 'all' or mode == 'workall':
-            self.log.console('Sending all heroes to work!',
+            self.log.console('Enviando todos os heróis para o trabalho!',
                              services=True, emoji='⚒️', color='green')
         elif mode == 'full':
             self.log.console(
-                'Sending heroes with full stamina bar to work!',
+                'Enviando heróis com barra de stamina completa para o trabalho!',
                 services=True,
                 emoji='⚒️',
                 color='green')
         elif mode == 'green':
             self.log.console(
-                'Sending heroes with green stamina bar to work!',
+                'Enviando heróis com barra de stamina verde para o trabalho!',
                 services=True,
                 emoji='⚒️',
                 color='green')
         elif mode == 'restall':
             self.log.console(
-                'Put the heroes to rest',
+                'Colocando heróis para descansar',
                 services=True,
                 emoji='💤',
                 color='green')
         else:
-            self.log.console('Sending all heroes to work!',
+            self.log.console('Enviando todos os heróis para o trabalho!',
                              services=True,
                              emoji='⚒️',
                              color='green')
@@ -107,7 +107,7 @@ class Heroes:
                 self.scroll()
             self.actions.sleep(1, 1, randomMouseMovement=False, forceTime=True)
 
-        self.log.console('{} total heroes sent since the bot started'.format(
+        self.log.console('{} heróis enviados desde o último start'.format(
             heroes_clicked_total), services=True, emoji='🦸', color='yellow')
 
         close_button = self.images.image('close_button')
@@ -137,7 +137,7 @@ class Heroes:
             self.auth.checkLogout()
 
     def refreshHeroesPositions(self):
-        self.log.console('Refreshing heroes positions',
+        self.log.console('Atualizando as posições dos heróis',
                          emoji='🔃', color='yellow')
 
         global next_refresh_heroes_positions
@@ -261,9 +261,9 @@ class Heroes:
             return
 
         if self.config['log']['debug'] is not False:
-            self.log.console('%d STAMINA bars detected' %
+            self.log.console('%d barras de energia detectadas' %
                              len(bars_elements), emoji='🟩', color='red')
-            self.log.console('%d WORK buttons detected' %
+            self.log.console('%d botões de trabalho detectados' %
                              len(workButtons), emoji='🔳', color='red')
 
         not_working_bars = []
@@ -273,7 +273,7 @@ class Heroes:
                 not_working_bars.append(bar)
 
         if len(not_working_bars) > 0:
-            message = 'Clicking in {} heroes with {} bar detected.'.format(
+            message = 'Clicando em {} heróis'.format(
                 len(not_working_bars), type)
             self.log.console(message, emoji='👆', color='green')
 
@@ -290,7 +290,7 @@ class Heroes:
 
             heroes_clicked_total = heroes_clicked_total + 1
             if heroes_clicked > 15:
-                self.log.console('Too many hero clicks, try to increase the back_button threshold',
+                self.log.console('Muitos heróis clicados, tente aumentar o back_button threshold',
                                  services=True, emoji='⚠️', color='yellow')
                 return
             self.actions.sleep(1, 2)

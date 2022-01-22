@@ -29,8 +29,8 @@ class MultiAccount:
         from src.heroes import Heroes
         from src.images import Images
         from src.log import Log
-        from src.recognition import Recognition
         from src.treasure_hunt import TreasureHunt
+        from src.recognition import Recognition
         self.actions = Actions()
         self.application = Application()
         self.auth = Auth()
@@ -46,20 +46,20 @@ class MultiAccount:
         self.importLibs()
         multiAccount = self.config['app']['multi_account']['enable']
         if multiAccount != True and os.name == 'nt':
-            self.log.console('Multi account disabled', emoji='🧾', color='cyan')
+            self.log.console('Multi Account desativado', emoji='🧾', color='cyan')
             self.botSingle()
 
         if multiAccount == True and os.name == 'nt':
-            self.log.console('Multi account enabled', emoji='🧾', color='cyan')
+            self.log.console('Multi Account ativado', emoji='🧾', color='cyan')
             self.botMultiAccountWindows()
 
         if os.name == 'posix':
-            self.log.console('Multi account DISABLE', emoji='🧾', color='cyan')
+            self.log.console('Multi Account desativado', emoji='🧾', color='cyan')
             self.botSingle()
 
     def startOnlyMapAction(self):
         self.importLibs()
-        self.log.console('Multi account disabled', emoji='🧾', color='cyan')
+        self.log.console('Multi Account desativado', emoji='🧾', color='cyan')
         self.botSingleOnlyMap()
 
 
@@ -134,7 +134,7 @@ class MultiAccount:
 
         if currentScreen == "main":
             self.treasure_hunt.goToMap()
-
+            
         if currentScreen == "treasure_hunt":
             if self.actions.clickButton(new_map_button):
                 last["new_map"] = now
@@ -187,7 +187,7 @@ class MultiAccount:
             humanClicker.click()
         window.maximize()
         window.activate()
-        self.log.console('Browser Active: ' + window.title, emoji='🪟', color='cyan')
+        self.log.console('Navegador ativo: ' + window.title, emoji='🪟', color='cyan')
         self.actions.sleep(2, 2)
         self.steps(last)
         if window_fullscreen is not True:

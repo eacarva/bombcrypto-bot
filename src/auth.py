@@ -56,7 +56,7 @@ class Auth:
             pyautogui.typewrite(password, interval=0.1)
             self.actions.sleep(1, 2)
             if self.actions.clickButton(metamask_unlock_button):
-                self.log.console('Unlock button clicked',
+                self.log.console('Botão de desbloqueio clicado',
                                  emoji='🔓', color='green')
 
         if self.actions.clickButton(metamask_sign_button):
@@ -70,17 +70,17 @@ class Auth:
             self.errors.verify()
 
         if self.recognition.currentScreen() == "main":
-            self.log.console('Logged in', services=True,
+            self.log.console('Logado', services=True,
                              emoji='🎉', color='green')
             return True
         else:
-            self.log.console('Login failed, trying again',
+            self.log.console('Falha no login, tentando novamente',
                              emoji='😿', color='red')
             login_attempts += 1
 
             if (login_attempts > 2):
                 self.telegram.sendPrint()
-                self.log.console('+3 login attempts, retrying',
+                self.log.console('+3 tentativas de login, tentando novamente',
                                  services=True, emoji='🔃', color='red')
                 login_attempts = 0
                 self.errors.verify()
@@ -106,18 +106,18 @@ class Auth:
         if currentScreen == "unknown" or currentScreen == "login":
             if self.recognition.positions(connect_wallet_button) is not False:
                 self.telegram.sendPrint()
-                self.log.console('Logout detected',
+                self.log.console('Logout detectado',
                                  services=True, emoji='😿', color='red')
-                self.log.console('Refreshing page',
+                self.log.console('Atualizando página',
                                  services=True, emoji='🔃', color='green')
                 pyautogui.hotkey('ctrl', 'shift', 'r')
                 self.recognition.waitForImage(connect_wallet_button)
                 self.login()
             elif self.recognition.positions(metamask_sign_button):
-                self.log.console('Sing button detected',
+                self.log.console('Botão de login detectado',
                                  services=True, emoji='✔️', color='green')
                 if self.actions.clickButton(metamask_cancel_button):
-                    self.log.console('Metamask is glitched, fixing',
+                    self.log.console('Metamask está com falha, consertando',
                                      services=True, emoji='🙀', color='yellow')
             else:
                 return False

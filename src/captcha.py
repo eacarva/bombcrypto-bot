@@ -15,7 +15,7 @@ class Captcha:
             title_robot = self.images.image('title_robot')
             isCaptcha = self.recognition.positions(title_robot)
             if isCaptcha is not False:
-                self.log.console('Captcha detected',
+                self.log.console('Captcha detectado',
                                  services=True, emoji='🧩', color='green')
 
                 if self.config['app']['captcha'] == 'crazy_numbers':

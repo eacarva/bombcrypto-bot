@@ -36,7 +36,7 @@ class Telegram:
             except telegram.error.InvalidToken:
                 self.updater = None
                 if self.enableTelegram == True:
-                    print('Telegram: BotFather Token invalid or Bot not initialized.')
+                    print('Telegram: BotFather Token inválido ou Bot não inicializado.')
                     exit()
                 return
 
@@ -65,7 +65,7 @@ class Telegram:
             file = open("./config/services/telegram.yaml",
                         'r', encoding='utf8')
         except FileNotFoundError:
-            print('Info: Telegram not configure, rename EXAMPLE-telegram.yaml to telegram.yaml in /config/services/ folder')
+            print('Info: Telegram não configurado, renomear EXAMPLE-telegram.yaml para telegram.yaml na pasta /config/services/')
             exit()
 
         with file as s:
@@ -77,7 +77,7 @@ class Telegram:
         if self.enableTelegram == False:
             return
 
-        self.log.console('Initializing Telegram...', emoji='📱')
+        self.log.console('Iniciando o Telegram...', emoji='📱')
         botFatherToken = self.telegramConfig['botfather_token']
         self.updater = Updater(botFatherToken)
 
@@ -147,7 +147,7 @@ class Telegram:
         except:
             self.log.console('Telegram offline', emoji='😿')
 
-        self.log.console('Map image sent to Telegram',
+        self.log.console('Imagem do mapa enviada para o Telegram',
                          services=False, emoji='📄')
         return True
 
@@ -169,7 +169,7 @@ class Telegram:
         except:
             self.log.console('Telegram offline', emoji='😿')
 
-        self.log.console('BCoin image sent to Telegram',
+        self.log.console('Imagem de BCoin enviada para o Telegram',
                          services=False, emoji='📄')
         return True
 
@@ -209,7 +209,7 @@ class Telegram:
         if self.enableTelegram == False:
             return
         try:
-            update.message.reply_text('🔃 Proccessing printscreen...')
+            update.message.reply_text('🔃 Processando printscreen...')
             screenshot = self.desktop.printScreen()
             image = './logs/print-report.{}'.format(
                 self.telegramConfig['format_of_image'])
@@ -223,7 +223,7 @@ class Telegram:
         update.message.reply_text(f'🆔 Your id is: {update.effective_user.id}')
 
     def commandSendMap(self, update):
-        update.message.reply_text('🔃 Proccessing image map...')
+        update.message.reply_text('🔃 Processando imagem de mapa...')
         if self.config['app']['multi_account']['enable'] is not True:
             if self.sendMapReport() is None:
                 update.message.reply_text('😿 An error has occurred')
@@ -232,7 +232,7 @@ class Telegram:
                 '⚠️ Command disabled, because of the Multi Accounts is enabled.')
 
     def commandSendBcoin(self, update):
-        update.message.reply_text('🔃 Proccessing image bcoin...')
+        update.message.reply_text('🔃 Processando imagem BCOIN...')
         if self.config['app']['multi_account']['enable'] is not True:
             if self.sendBCoinReport() is None:
                 update.message.reply_text('😿 An error has occurred')

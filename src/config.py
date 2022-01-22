@@ -9,7 +9,7 @@ class Config:
         try:
             file = open("./config/config.yaml", 'r', encoding='utf8')
         except FileNotFoundError:
-            print(Fore.RED + 'Error: config.yaml file not found, rename EXAMPLE-config.yaml to config.yaml inside /config folder' + Fore.RESET)
+            print(Fore.RED + 'Erro: config.yaml não encontrado, renomeie EXAMPLE-config.yaml para config.yaml dentro da pasta /config' + Fore.RESET)
             exit()
 
         with file as s:
@@ -23,7 +23,7 @@ class Config:
             configExample = yaml.safe_load(data.text)
         except FileNotFoundError:
             self.log.console(
-                'Config example file not found in GitHub', emoji='💥', color='red')
+                'Arquivo de exemplo de configuração não encontrado no GitHub', emoji='💥', color='red')
             configExample = None
 
         return configExample

@@ -30,7 +30,7 @@ class TreasureHunt:
         treasure_hunt_banner = self.images.image('treasure_hunt_banner')
         close_button = self.images.image('close_button')
 
-        self.log.console('Entering treasure hunt', emoji='▶️', color='yellow')
+        self.log.console('Entrando na caça ao tesouro', emoji='▶️', color='yellow')
 
         if currentScreen == "main":
             self.actions.clickButton(treasure_hunt_banner)
@@ -39,7 +39,7 @@ class TreasureHunt:
                 self.actions.clickButton(treasure_hunt_banner)
         if currentScreen == "unknown" or currentScreen == "login":
             self.auth.checkLogout()
-        self.actions.sleep(1, 1, forceTime=True, randomMouseMovement=False)
+            self.actions.sleep(1, 1, forceTime=True, randomMouseMovement=False)
 
     def generateMapImage(self):
         back_button_image = self.images.image('back_button')
@@ -63,7 +63,7 @@ class TreasureHunt:
         screenshot = self.desktop.printScreen()
         cropped = screenshot[newY0:newY1, newX0:newX1]
         cv2.imwrite(self.MAP_IMAGE, cropped)
-        self.log.console('Map image created', services=False, emoji='🪟')
+        self.log.console('Imagem do mapa criada', services=False, emoji='🪟')
         self.actions.sleep(1, 1)
 
     def chestEstimate(self):
@@ -86,7 +86,7 @@ class TreasureHunt:
         total = value01 + value02 + value03 + value04
 
         report = f"""
-Possible quantity chest per type:
+Quantidade possível de baú por tipo:
 🟤 - {totalChest01}
 🟣 - {totalChest02}
 🟡 - {totalChest03}
@@ -94,18 +94,18 @@ Possible quantity chest per type:
 🏛️ - {totalChestJail}
 🗝️ - {totalChestKey}
 
-🤑 Possible amount: {total:.3f} BCoin
+🤑 Valor possível: {total:.3f} BCoin
 """
         reportWithoutEmoji = f"""
-Possible quantity chest per type:
-Brown - {totalChest01}
-Purple - {totalChest02}
-Yellow - {totalChest03}
-Blue - {totalChest04}
-Jail - {totalChestJail}
-Key - {totalChestKey}
+Quantidade possível de baú por tipo:
+Marrom - {totalChest01}
+Roxo - {totalChest02}
+Amarelo - {totalChest03}
+Azul - {totalChest04}
+Prisão - {totalChestJail}
+Chave - {totalChestKey}
 
-Possible amount: {total:.3f} BCoin
+Valor possível: {total:.3f} BCoin
 """
         try:
             self.log.console(report, services=True)

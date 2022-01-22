@@ -46,7 +46,7 @@ class Bcoins:
             screenshot = self.desktop.printScreen()
             cropped = screenshot[y: y + h, x: x + w]
             cv2.imwrite(self.BCOIN_BOX_IMAGE, cropped)
-            self.log.console('Your Chest image created',
+            self.log.console('Imagem do Baú criada',
                              services=False, emoji='🪟')
 
         self.actions.clickButton(close_button)
@@ -71,10 +71,10 @@ class Bcoins:
         else:
             return
 
-        self.log.console('Opening modal Your Chest', services=False, emoji='🪟')
+        self.log.console('Abrindo Baú', services=False, emoji='🪟')
         self.actions.clickButton(treasure_chest_button)
         seconds = 10
-        message = 'Wait for {} seconds, to show your BCOIN'.format(seconds)
+        message = '{} segundos para mostrar seu BCOIN'.format(seconds)
         self.log.console(message, services=False, emoji='⏳')
         self.actions.sleep(seconds, seconds, forceTime=True)
 

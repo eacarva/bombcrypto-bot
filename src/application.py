@@ -26,8 +26,8 @@ class Application:
         self.checkUpdate()
         self.getVersions()
 
-        input('Press Enter to start the bot...\n')
-        self.log.console('Starting bot...', services=True,
+        input('Pressione Enter para iniciar o bot...\n')
+        self.log.console('Iniciando o bot...', services=True,
                          emoji='🤖', color='green')
 
     def stop(self):
@@ -42,13 +42,13 @@ class Application:
             localVersion = self.localVersion()
 
             banner = """
-Versions
+Versões
   Local
     App: {}
-    Config File: {}
+    Arquivo de configuração: {}
   GitHub
     App: {}
-    Config File: {}
+    Arquivo de configuração: {}
 """.format(localVersion[0], localVersion[1], gitHubVersion[0], gitHubVersion[1])
 
             print(banner)
@@ -67,12 +67,12 @@ Versions
 
         if (emergencyGithubApp == 'true' and versionGithubApp > versionLocalApp):
             self.log.console(
-                'Update is required for your security', services=True, emoji='🆘', color='red')
+                'A atualização é necessária para sua segurança', services=True, emoji='🆘', color='red')
 
         if versionLocalApp is not None:
             if versionGithubApp > versionLocalApp:
                 self.log.console(
-                    f'New app version {versionGithubApp} available, please update!', services=True, emoji='🎉', color='red'),
+                    f'Versão {versionGithubApp} disponível, por favor atualize!', services=True, emoji='🎉', color='red'),
             # if versionGithubConfigFile > versionLocalConfigFile:
             #     self.log.console(
             #         f'New config file version {versionGithubConfigFile} available, please update!', services=True, emoji='🎉', color='red'),
@@ -124,7 +124,7 @@ Versions
 
         if newConfigThreshold != self.configThreshold:
             self.configThreshold = newConfigThreshold
-            self.log.console('New Threshold applied', emoji='⚙️', color='grey')
+            self.log.console('Novo limite aplicado', emoji='⚙️', color='grey')
 
     def compareYamlConfig(self):
         from src.config import Config
@@ -139,24 +139,24 @@ Versions
             configGitHubExample = Config().readGitHubExample()
             diff = DeepDiff(self.config, configGitHubExample)
             if len(diff) > 0 and 'dictionary_item_added' in diff:
-                print('File that needs updating: ./config/config.yaml\n')
+                print('Arquivo que precisa ser atualizado: ./config/config.yaml\n')
                 try:
                     if len(diff['dictionary_item_added']) > 0:
-                        print(Fore.RED + '***************************' + Fore.RESET)
-                        print(Fore.RED + '***** UPDATE REQUIRED *****' + Fore.RESET)
-                        print(Fore.RED + '***************************' + Fore.RESET)
-                        print('Key added:')
+                        print(Fore.RED + '**********************************' + Fore.RESET)
+                        print(Fore.RED + '***** ATUALIZAÇÃO NECESSÁRIA *****' + Fore.RESET)
+                        print(Fore.RED + '**********************************' + Fore.RESET)
+                        print('Chave adicionada:')
                         for added in diff['dictionary_item_added']:
                             key = added.replace("root", "")
                             print(Fore.GREEN + key + Fore.RESET)
                     if len(diff['dictionary_item_removed']) > 0:
                         print(Fore.LIGHTBLACK_EX +
-                              '\n\n***************************' + Fore.RESET)
+                              '\n\n********************************' + Fore.RESET)
                         print(Fore.LIGHTBLACK_EX +
-                              '***** UPDATE OPTIONAL *****' + Fore.RESET)
+                              '***** ATUALIZAÇÃO OPCIONAL *****' + Fore.RESET)
                         print(Fore.LIGHTBLACK_EX +
-                              '***************************' + Fore.RESET)
-                        print('Key removed:')
+                              '********************************' + Fore.RESET)
+                        print('Chave removida:')
                         for removed in diff['dictionary_item_removed']:
                             key = removed.replace("root", "")
                             print(Fore.GREEN + key + Fore.RESET)
@@ -169,5 +169,5 @@ Versions
                     if len(diff['dictionary_item_added']) > 0:
                         exit()
                 except KeyError:
-                    print('Erro in validation configs')
+                    print('Erro nas configurações de validação')
                     exit()

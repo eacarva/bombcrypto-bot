@@ -27,11 +27,11 @@ class Errors:
         connect_wallet_button = self.images.image('connect_wallet_button')
 
         if self.recognition.positions(title_error, thresholdError) is not False:
-            self.log.console('Error detected, trying to resolve',
+            self.log.console('Erro detectado, tentando resolver',
                              services=True, emoji='💥', color='red')
             self.telegram.sendPrint()
             self.actions.clickButton(ok_button)
-            self.log.console('Refreshing page', services=True,
+            self.log.console('Atualizando página', services=True,
                              emoji='🔃', color='green')
             pyautogui.hotkey('ctrl', 'shift', 'r')
             self.recognition.waitForImage(connect_wallet_button)

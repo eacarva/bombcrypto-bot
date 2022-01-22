@@ -230,7 +230,7 @@ class Win32Window(BaseWindow):
     def restore(self):
         """If maximized or minimized, restores the window to it's normal size."""
         ctypes.windll.user32.ShowWindow(self._hWnd, SW_RESTORE)
-        
+
     def show(self):
         """If hidden or showing, shows the window on screen and in title bar."""
         ctypes.windll.user32.ShowWindow(self._hWnd,SW_SHOW)
@@ -328,9 +328,9 @@ def resolution():
 
 '''
 def displayWindowsUnderMouse(xOffset=0, yOffset=0):
-    """This function is meant to be run from the command line. It will
-    automatically display the location and RGB of the mouse cursor."""
-    print('Press Ctrl-C to quit.')
+    """Esta função deve ser executada a partir da linha de comando. Ele vai
+     exibir automaticamente a localização e RGB do cursor do mouse."""
+    print('Pressione Ctrl-C para sair.')
     if xOffset != 0 or yOffset != 0:
         print('xOffset: %s yOffset: %s' % (xOffset, yOffset))
     resolution = size()
